@@ -29,6 +29,7 @@ dependencies:
   intl: ^0.17.0
   injector: ^2.0.0
   http: ^0.13.3
+  flutter_cache_manager: ^3.1.1
 
 
   # The following adds the Cupertino Icons font to your application.

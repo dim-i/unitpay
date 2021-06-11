@@ -11,3 +11,9 @@ class ErrorProductState extends ProductBlocState{
   String? err;
   ErrorProductState({this.err});
 }
+
+class ListProductState extends ProductBlocState {
+  List<Product> listProducts;
+
+  ListProductState(this.listProducts);
+}

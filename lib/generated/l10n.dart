@@ -59,6 +59,36 @@ class S {
       args: [],
     );
   }
+
+  /// `Classic`
+  String get classic {
+    return Intl.message(
+      'Classic',
+      name: 'classic',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Crazy cow`
+  String get crazy_cow {
+    return Intl.message(
+      'Crazy cow',
+      name: 'crazy_cow',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Big size`
+  String get big_size {
+    return Intl.message(
+      'Big size',
+      name: 'big_size',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

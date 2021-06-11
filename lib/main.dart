@@ -5,7 +5,8 @@ import 'package:injector/injector.dart';
 import 'package:unitpay/bloc/product_bloc.dart';
 import 'package:unitpay/generated/l10n.dart';
 import 'package:unitpay/repo/product_repository.dart';
-import 'package:unitpay/theme/theme_light.dart';
+import 'package:unitpay/theme/theme_dark.dart';
+import 'package:unitpay/views/home_view.dart';
 
 void main() {
   final injector = Injector.appInstance;
@@ -44,7 +45,8 @@ class MyApp extends StatelessWidget {
             GlobalCupertinoLocalizations.delegate,
           ],
           supportedLocales: S.delegate.supportedLocales,
-          theme: themeLight,
+          theme: themeDark,
+          home: HomeView(),
         ),
       );
   }

@@ -1,34 +1,34 @@
 import 'package:flutter/material.dart';
 
-ThemeData _themeLight = ThemeData.light();
+ThemeData _themeDark = ThemeData.dark();
 
-ThemeData themeLight = _themeLight.copyWith(
-  primaryColorLight: Colors.grey[200],
-  primaryColorDark: Colors.grey[500],
-  primaryColor: Colors.grey[300],
+ThemeData themeDark = _themeDark.copyWith(
+  primaryColorLight: Colors.grey[900],
+  primaryColorDark: Colors.grey[900],
+  primaryColor: Colors.grey[900],
   primaryIconTheme: IconThemeData(color: Colors.grey[200]),
   hintColor: Colors.black54,
-  backgroundColor: Colors.grey[200],
+  backgroundColor: Colors.grey[900],
   focusColor: Colors.grey[200],
   splashColor: Colors.grey[200],
   accentColor: Colors.black54,
 
   appBarTheme: AppBarTheme(
-      color: Colors.black54,
+      color: Colors.black,
       iconTheme: IconThemeData(color: Colors.grey[200]),
-      textTheme: _textAppBar(_themeLight.textTheme)
+      textTheme: _textAppBar(_themeDark.textTheme)
   ),
 
   buttonTheme: ButtonThemeData(
-    buttonColor:  Colors.grey[200],
+    buttonColor:  Colors.grey[500],
     shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(16)
     ),
   ),
 
   cardTheme: CardTheme(
-    color: Colors.grey[200],
-    // clipBehavior: Clip.antiAliasWithSaveLayer,
+    color: Colors.grey[900],
+    //clipBehavior: Clip.antiAliasWithSaveLayer,
     // shape: RoundedRectangleBorder(
     //   borderRadius: BorderRadius.circular(16),
     // ),
@@ -44,7 +44,7 @@ ThemeData themeLight = _themeLight.copyWith(
   ),
 
 
-  textTheme: _textLight(_themeLight.textTheme),
+  textTheme: _textLight(_themeDark.textTheme),
 );
 
 TextTheme _textAppBar(TextTheme base){
@@ -58,10 +58,10 @@ TextTheme _textAppBar(TextTheme base){
 TextTheme _textLight(TextTheme base) {
   return base.copyWith(
     headline4: base.headline6!.copyWith(
-        color: Colors.black54
+        color: Colors.white
     ),
     bodyText2: base.bodyText1!.copyWith(
-        color: Colors.black54
+        color: Colors.white
     ),
   );
 }
