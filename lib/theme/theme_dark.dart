@@ -16,7 +16,11 @@ ThemeData themeDark = _themeDark.copyWith(
   appBarTheme: AppBarTheme(
       color: Colors.black,
       iconTheme: IconThemeData(color: Colors.grey[200]),
-      textTheme: _textAppBar(_themeDark.textTheme)
+      textTheme: _textAppBar(_themeDark.textTheme),
+      actionsIconTheme: IconThemeData(color: Colors.grey[200]),
+      titleTextStyle: TextStyle(color: Colors.grey[200]),
+      toolbarTextStyle: TextStyle(color: Colors.grey[200]),
+
   ),
 
   buttonTheme: ButtonThemeData(

@@ -7,6 +7,7 @@ import 'package:unitpay/generated/l10n.dart';
 import 'package:unitpay/repo/product_repository.dart';
 import 'package:unitpay/theme/theme_dark.dart';
 import 'package:unitpay/views/home_view.dart';
+import 'package:unitpay/views/home_view_simple.dart';
 
 void main() {
   final injector = Injector.appInstance;

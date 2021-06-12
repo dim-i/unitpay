@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:unitpay/bloc/product_bloc.dart';
 import 'package:unitpay/generated/l10n.dart';
 
+import '../bloc/product_bloc.dart';
 
 class HomeView extends StatefulWidget {
   @override
@@ -14,77 +15,107 @@ class HomeView extends StatefulWidget {
 class _HomeViewState extends State<HomeView> {
   @override
   Widget build(BuildContext context) {
+    final heightSize = MediaQuery.of(context).size.height;
+    final widthSize = MediaQuery.of(context).size.width;
     context.read<ProductBlocCubit>().getProductList();
     return Scaffold(
       appBar: AppBar(
+        leading: TextButton(
+          onPressed: () {},
+          child: Text(S.of(context).menu),
+        ),
         actions: [
-          TextButton(
-              onPressed: (){},
-              child: Text(S.of(context).menu),
-          ),
           IconButton(
-              onPressed: (){},
-              icon: Icon(Icons.add),
-          )
+            onPressed: () =>
+                context.read<ProductBlocCubit>().addProductToList(),
+            icon: Icon(Icons.add),
+          ),
+          GestureDetector(
+            onTap: () => context.read<ProductBlocCubit>().addProductToList(),
+            child: Container(
+              width: widthSize / 12,
+              height: heightSize / 23,
+              color: Colors.blue[600],
+              child: Icon(
+                Icons.add,
+              ),
+            ),
+          ),
         ],
       ),
       body: Container(
-        child:
-      BlocBuilder<ProductBlocCubit, ProductBlocState>(
-        builder: (context, state){
-          if(state is EmptyProductState){
+        child: BlocBuilder<ProductBlocCubit, ProductBlocState>(
+            builder: (context, state) {
+          if (state is EmptyProductState) {
             return Center(
               child: CircularProgressIndicator(),
             );
           }
-          if (state is ErrorProductState){
+          if (state is ErrorProductState) {
             return Center(
-              child: Text('Ошибка'),
+              child: Text('${state.err}'),
             );
           }
-          if(state is ListProductState){
+          if (state is ListProductState) {
             return Container(
-                child: GridView.builder(
-                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2,
-                    ),
-                    itemCount: state.listProducts.length,
-                  itemBuilder: (context, index){
-                    return Card(
+              child: GridView.builder(
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                ),
+                itemCount: state.listProducts.length,
+                itemBuilder: (context, index) {
+                  return Card(
                       child: Stack(
                         children: [
-                          Image.file(File('${state.listProducts[index].pathImg}')),
-                          Positioned(
-                            left: 5,
-                            bottom: 5,
-                              child: Text('${state.listProducts[index].productName}'),
-                          ),
-                          Positioned(
-                            right: 5,
-                            top: 5,
-                              child: Container(
-                                width: 30,
-                                height: 30,
-                                color: Colors.blue[600],
-                                child: Icon(
-                                    Icons.clear,
-
-                                ),
+                          Container(
+                            decoration: BoxDecoration(
+                              image: DecorationImage(
+                              image: FileImage(
+                                File('${state.listProducts[index].pathImg}')
                               ),
+                            fit: BoxFit.fill,
                           ),
-                        ],
-                      )
-                      //Center(child: Text('${state.listProducts[index].pathImg}')),
-                    );
-                  },
-                ),
+                        ),
+                      ),
+                        Positioned(
+                          left: 0,
+                          right: 0,
+                          bottom: 0,
+                          child: Container(
+                            color: Colors.grey[900],
+                            child:
+                              Text('${state.listProducts[index].productName}'),
+                          ),
+                        ),
+                        Positioned(
+                          right: 5,
+                          top: 5,
+                          child:
+                          GestureDetector(
+                            onTap: () => context
+                              .read<ProductBlocCubit>()
+                              .removeProductFromList(index),
+                            child: Container(
+                              width: widthSize / 12,
+                              height: heightSize / 23,
+                              color: Colors.blue[600],
+                              child: Icon(
+                                Icons.delete_forever_outlined,
+                            ),
+                          ),
+                        ),
+                      ),
+                      ],
+                    )
+                  );
+                },
+              ),
             );
           }
           return Center(
-            child: Text('список пуст'),
+            child: Text(S.of(context).empty),
           );
-        }
-      ),
+        }),
       ),
     );
   }
