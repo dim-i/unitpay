@@ -22,6 +22,12 @@ ThemeData themeDark = _themeDark.copyWith(
       toolbarTextStyle: TextStyle(color: Colors.grey[200]),
   ),
 
+  textButtonTheme:  TextButtonThemeData(
+    style: TextButton.styleFrom(
+      textStyle: TextStyle(color: Colors.grey[200]),
+    )
+  ),
+
   buttonTheme: ButtonThemeData(
     buttonColor:  Colors.grey[500],
     shape: RoundedRectangleBorder(

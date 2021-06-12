@@ -20,21 +20,34 @@ class _HomeViewState extends State<HomeView> {
       appBar: AppBar(
         leading: TextButton(
           onPressed: () {},
-          child: Text(S.of(context).menu),
+          child: Text(
+            S.of(context).menu,
+            style: TextStyle(color: Colors.grey[200]),
+          ),
         ),
         actions: [
-          Container(
-            width: widthSize / 8,
-            height: widthSize / 8,
-            color: Colors.blue[600],
-            child:
-            GestureDetector(
-              onTap: () => context.read<ProductBlocCubit>().addProductToList(),
-              child: Icon(
-                  Icons.add,
+          Stack(
+            children: [
+              Container(
+                width: widthSize / 8,
+                height: widthSize / 8,
+                  color: Colors.black,
+              ),
+            Positioned(
+              right: 2,
+              top: 2,
+              child: GestureDetector(
+                onTap: () => context.read<ProductBlocCubit>().addProductToList(),
+                child: Container(
+                    width: widthSize / 12,
+                    height: widthSize / 12,
+                    color: Colors.blue[600],
+                    child: Icon(Icons.add,),
                 ),
               ),
             ),
+            ],
+          )
         ],
       ),
       body: Container(
