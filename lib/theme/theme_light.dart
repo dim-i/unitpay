@@ -28,10 +28,6 @@ ThemeData themeLight = _themeLight.copyWith(
 
   cardTheme: CardTheme(
     color: Colors.grey[200],
-    // clipBehavior: Clip.antiAliasWithSaveLayer,
-    // shape: RoundedRectangleBorder(
-    //   borderRadius: BorderRadius.circular(16),
-    // ),
   ),
 
   elevatedButtonTheme: ElevatedButtonThemeData(

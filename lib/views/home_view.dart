@@ -1,11 +1,9 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
+import 'dart:io';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:unitpay/bloc/product_bloc.dart';
 import 'package:unitpay/generated/l10n.dart';
-
-import '../bloc/product_bloc.dart';
 
 class HomeView extends StatefulWidget {
   @override
@@ -13,11 +11,11 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeViewState extends State<HomeView> {
+
+
   @override
   Widget build(BuildContext context) {
-    final heightSize = MediaQuery.of(context).size.height;
     final widthSize = MediaQuery.of(context).size.width;
-    context.read<ProductBlocCubit>().getProductList();
     return Scaffold(
       appBar: AppBar(
         leading: TextButton(
@@ -25,22 +23,18 @@ class _HomeViewState extends State<HomeView> {
           child: Text(S.of(context).menu),
         ),
         actions: [
-          IconButton(
-            onPressed: () =>
-                context.read<ProductBlocCubit>().addProductToList(),
-            icon: Icon(Icons.add),
-          ),
-          GestureDetector(
-            onTap: () => context.read<ProductBlocCubit>().addProductToList(),
-            child: Container(
-              width: widthSize / 12,
-              height: heightSize / 23,
-              color: Colors.blue[600],
+          Container(
+            width: widthSize / 8,
+            height: widthSize / 8,
+            color: Colors.blue[600],
+            child:
+            GestureDetector(
+              onTap: () => context.read<ProductBlocCubit>().addProductToList(),
               child: Icon(
-                Icons.add,
+                  Icons.add,
+                ),
               ),
             ),
-          ),
         ],
       ),
       body: Container(
@@ -97,7 +91,7 @@ class _HomeViewState extends State<HomeView> {
                               .removeProductFromList(index),
                             child: Container(
                               width: widthSize / 12,
-                              height: heightSize / 23,
+                              height: widthSize / 12,
                               color: Colors.blue[600],
                               child: Icon(
                                 Icons.delete_forever_outlined,
@@ -118,5 +112,13 @@ class _HomeViewState extends State<HomeView> {
         }),
       ),
     );
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    SchedulerBinding.instance!.addPostFrameCallback((_) {
+      context.read<ProductBlocCubit>().getProductList();
+    });
   }
 }

@@ -1,4 +1,4 @@
-import '../generated/l10n.dart';
+import 'package:unitpay/generated/l10n.dart';
 
 enum ProductNames {classic, crazy, big}
 
@@ -16,7 +16,6 @@ extension ProductNamesLocales on ProductNames{
     }
   }
 }
-
 
 class Product{
   final String pathImg;

@@ -1,7 +1,6 @@
 
 part of 'product_bloc.dart';
 
-
 @immutable
 abstract class ProductBlocState {}
 
@@ -14,6 +13,5 @@ class ErrorProductState extends ProductBlocState{
 
 class ListProductState extends ProductBlocState {
   List<Product> listProducts;
-
   ListProductState(this.listProducts);
 }

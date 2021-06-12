@@ -24,6 +24,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "big_size": MessageLookupByLibrary.simpleMessage("Big size"),
         "classic": MessageLookupByLibrary.simpleMessage("Classic"),
         "crazy_cow": MessageLookupByLibrary.simpleMessage("Crazy cow"),
+        "empty": MessageLookupByLibrary.simpleMessage("Empty list"),
+        "err": MessageLookupByLibrary.simpleMessage("Error"),
         "menu": MessageLookupByLibrary.simpleMessage("Menu")
       };
 }

@@ -25,6 +25,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Размер имеет значение"),
         "classic": MessageLookupByLibrary.simpleMessage("Классический бургер"),
         "crazy_cow": MessageLookupByLibrary.simpleMessage("Злая говядина"),
+        "empty": MessageLookupByLibrary.simpleMessage("Список пуст"),
+        "err": MessageLookupByLibrary.simpleMessage("Ошибка"),
         "menu": MessageLookupByLibrary.simpleMessage("Меню")
       };
 }

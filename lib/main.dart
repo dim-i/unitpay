@@ -7,7 +7,6 @@ import 'package:unitpay/generated/l10n.dart';
 import 'package:unitpay/repo/product_repository.dart';
 import 'package:unitpay/theme/theme_dark.dart';
 import 'package:unitpay/views/home_view.dart';
-import 'package:unitpay/views/home_view_simple.dart';
 
 void main() {
   final injector = Injector.appInstance;
@@ -15,23 +14,15 @@ void main() {
         () => ProductHttpRepository(),
     dependencyName: 'HttpRepository',
   );
-  // final productRepository = ProductRepository();
-  // runApp(MyApp(productRepository: productRepository,));
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
-  // const MyApp({Key? key, required ProductRepository productRepository}) :
-  //       _productRepository = productRepository, super(key: key);
-  // final ProductRepository _productRepository;
-  // This widget is the root of your application.
+
   @override
   Widget build(BuildContext context) {
     return
-      // RepositoryProvider.value(
-      // value: _productRepository,
-      // child:
       MultiBlocProvider(
         providers: [
           BlocProvider<ProductBlocCubit>(
@@ -39,6 +30,7 @@ class MyApp extends StatelessWidget {
           ),
         ],
         child: MaterialApp(
+          debugShowCheckedModeBanner: false,
           localizationsDelegates: [
             S.delegate,
             GlobalMaterialLocalizations.delegate,

@@ -89,6 +89,26 @@ class S {
       args: [],
     );
   }
+
+  /// `Error`
+  String get err {
+    return Intl.message(
+      'Error',
+      name: 'err',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Empty list`
+  String get empty {
+    return Intl.message(
+      'Empty list',
+      name: 'empty',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

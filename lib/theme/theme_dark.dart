@@ -20,7 +20,6 @@ ThemeData themeDark = _themeDark.copyWith(
       actionsIconTheme: IconThemeData(color: Colors.grey[200]),
       titleTextStyle: TextStyle(color: Colors.grey[200]),
       toolbarTextStyle: TextStyle(color: Colors.grey[200]),
-
   ),
 
   buttonTheme: ButtonThemeData(
@@ -32,10 +31,6 @@ ThemeData themeDark = _themeDark.copyWith(
 
   cardTheme: CardTheme(
     color: Colors.grey[900],
-    //clipBehavior: Clip.antiAliasWithSaveLayer,
-    // shape: RoundedRectangleBorder(
-    //   borderRadius: BorderRadius.circular(16),
-    // ),
   ),
 
   elevatedButtonTheme: ElevatedButtonThemeData(

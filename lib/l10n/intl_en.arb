@@ -3,6 +3,6 @@
   "classic": "Classic",
   "crazy_cow": "Crazy cow",
   "big_size": "Big size",
-  "error": "Error",
-  "empty": "List is empty"
+  "err": "Error",
+  "empty": "Empty list"
 }

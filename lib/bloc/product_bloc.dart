@@ -7,8 +7,6 @@ import 'package:unitpay/models/product.dart';
 import 'package:unitpay/models/product_image.dart';
 import 'package:unitpay/repo/product_repository.dart';
 
-import '../models/product.dart';
-
 
 part 'product_bloc_state.dart';
 
@@ -32,7 +30,7 @@ class ProductBlocCubit extends Cubit<ProductBlocState>{
       _listProduct.add(Product(_listProductImage[indexImageList]
           .imagePath, ProductNames.values[indexImageList].localization()));
     }
-    print('размер списка ${_listProduct.length}');
+    //print('размер списка ${_listProduct.length}');
   }
 
   Future<void> getProductList()async {
@@ -40,17 +38,17 @@ class ProductBlocCubit extends Cubit<ProductBlocState>{
       await _makeListProduct();
       emit(ListProductState(_listProduct));
     }on Exception{
-      emit(ErrorProductState(err: S.current.error));
+      emit(ErrorProductState(err: S.current.err));
     }
   }
 
   removeProductFromList(int index){
     try{
       _listProduct.removeAt(index);
-      print('размер списка ${_listProduct.length}');
+      //print('размер списка ${_listProduct.length}');
       emit(ListProductState(_listProduct));
     }on Exception{
-      emit(ErrorProductState(err: S.current.error));
+      emit(ErrorProductState(err: S.current.err));
     }
   }
 
@@ -59,10 +57,10 @@ class ProductBlocCubit extends Cubit<ProductBlocState>{
       int indexImageList = math.Random().nextInt(3);
        _listProduct.add(Product(_listProductImage[indexImageList]
            .imagePath, ProductNames.values[indexImageList].localization()));
-      print('размер списка ${_listProduct.length}');
+      //print('размер списка ${_listProduct.length}');
       emit(ListProductState(_listProduct));
     }on Exception{
-      emit(ErrorProductState(err: S.current.error));
+      emit(ErrorProductState(err: S.current.err));
     }
   }
 }
