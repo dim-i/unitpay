@@ -3,9 +3,8 @@ import 'package:bloc/bloc.dart';
 import 'package:injector/injector.dart';
 import 'package:meta/meta.dart';
 import 'package:unitpay/generated/l10n.dart';
-import 'package:unitpay/models/product.dart';
-import 'package:unitpay/models/product_image.dart';
 import 'package:unitpay/repo/product_repository.dart';
+
 
 
 part 'product_bloc_state.dart';
@@ -16,27 +15,34 @@ class ProductBlocCubit extends Cubit<ProductBlocState>{
   final ProductRepository _productRepository = Injector.appInstance.get<ProductRepository>(
     dependencyName: 'HttpRepository',
   );
-  final List<ProductImage> _listProductImage = [];
-  final List<Product> _listProduct = [];
 
-  Future<void> _makeListProduct()async {
-    final int listDepth = 10000 * (math.Random().nextInt(9)+1);
+  final List<String> _listImageURL = [];
+  final List<int> _listPositionsIndex = [];
+
+
+  List<String> get listImageURL => _listImageURL;
+
+  Future<void> _makeListProductURL()async {
     for(int i = 0; i < 3; i++){
-      final ProductImage _productImage = await _productRepository.getProduct();
-      _listProductImage.add(_productImage);
+      listImageURL.add(await _productRepository.getProductURL());
     }
-    for(int j = 0; j < listDepth; j++){
-      int indexImageList = math.Random().nextInt(3);
-      _listProduct.add(Product(_listProductImage[indexImageList]
-          .imagePath, ProductNames.values[indexImageList].localization()));
-    }
-    //print('размер списка ${_listProduct.length}');
   }
 
-  Future<void> getProductList()async {
+  _makeListPositionsIndex(){
+    final int listDepth = 10000 * (math.Random().nextInt(9)+1);
+    for(int j = 0; j < listDepth; j++){
+      int indexImageList = math.Random().nextInt(3);
+      _listPositionsIndex.add(indexImageList);
+    }
+  }
+
+  Future<void> getPositionsIndexList()async {
+    if(_listPositionsIndex.isNotEmpty) return;
     try{
-      await _makeListProduct();
-      emit(ListProductState(_listProduct));
+      await _makeListProductURL();
+      _makeListPositionsIndex();
+      //print('размер списка ${_listPositionsIndex.length}');
+      emit(ListPositionIndexState(_listPositionsIndex));
     }on Exception{
       emit(ErrorProductState(err: S.current.err));
     }
@@ -44,9 +50,9 @@ class ProductBlocCubit extends Cubit<ProductBlocState>{
 
   removeProductFromList(int index){
     try{
-      _listProduct.removeAt(index);
-      //print('размер списка ${_listProduct.length}');
-      emit(ListProductState(_listProduct));
+      _listPositionsIndex.removeAt(index);
+      //print('размер списка ${_listPositionsIndex.length}');
+      emit(ListPositionIndexState(_listPositionsIndex));
     }on Exception{
       emit(ErrorProductState(err: S.current.err));
     }
@@ -55,10 +61,9 @@ class ProductBlocCubit extends Cubit<ProductBlocState>{
   addProductToList(){
     try{
       int indexImageList = math.Random().nextInt(3);
-       _listProduct.add(Product(_listProductImage[indexImageList]
-           .imagePath, ProductNames.values[indexImageList].localization()));
-      //print('размер списка ${_listProduct.length}');
-      emit(ListProductState(_listProduct));
+       _listPositionsIndex.insert(0, indexImageList);
+      //print('размер списка ${_listPositionsIndex.length}');
+      emit(ListPositionIndexState(_listPositionsIndex));
     }on Exception{
       emit(ErrorProductState(err: S.current.err));
     }

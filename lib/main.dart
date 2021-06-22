@@ -6,7 +6,7 @@ import 'package:unitpay/bloc/product_bloc.dart';
 import 'package:unitpay/generated/l10n.dart';
 import 'package:unitpay/repo/product_repository.dart';
 import 'package:unitpay/theme/theme_dark.dart';
-import 'package:unitpay/views/home_view.dart';
+import 'package:unitpay/views/home_view_n.dart';
 
 void main() {
   final injector = Injector.appInstance;
@@ -31,6 +31,8 @@ class MyApp extends StatelessWidget {
         ],
         child: MaterialApp(
           debugShowCheckedModeBanner: false,
+          checkerboardOffscreenLayers: false,
+          checkerboardRasterCacheImages: false,
           localizationsDelegates: [
             S.delegate,
             GlobalMaterialLocalizations.delegate,
@@ -39,7 +41,7 @@ class MyApp extends StatelessWidget {
           ],
           supportedLocales: S.delegate.supportedLocales,
           theme: themeDark,
-          home: HomeView(),
+          home: HomeViewN(),
         ),
       );
   }

@@ -7,11 +7,12 @@ abstract class ProductBlocState {}
 class EmptyProductState extends ProductBlocState {}
 
 class ErrorProductState extends ProductBlocState{
-  String? err;
+  final String? err;
   ErrorProductState({this.err});
 }
 
-class ListProductState extends ProductBlocState {
-  List<Product> listProducts;
-  ListProductState(this.listProducts);
+class ListPositionIndexState extends ProductBlocState{
+  final List<int> listProductsIndex;
+
+  ListPositionIndexState(this.listProductsIndex);
 }
