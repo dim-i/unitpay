@@ -5,8 +5,6 @@ import 'package:meta/meta.dart';
 import 'package:unitpay/generated/l10n.dart';
 import 'package:unitpay/repo/product_repository.dart';
 
-
-
 part 'product_bloc_state.dart';
 
 class ProductBlocCubit extends Cubit<ProductBlocState>{
